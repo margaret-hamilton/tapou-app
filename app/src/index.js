@@ -1,9 +1,10 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { StrictMode } from "react";
 import { createRoot } from 'react-dom/client';
-import App from "./App";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import App from "./App";
 
 const queryClient = new QueryClient();
 
