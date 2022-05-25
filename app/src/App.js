@@ -23,8 +23,9 @@ export default function App() {
       )}
       <ul>
         {data &&
-          data.data.map(({ id, title }) => (
+          data.data.map(({ id, title, image }) => (
             <li key={id}>
+              <img src={image}></img>
               <h3>{title}</h3>
             </li>
           ))}
