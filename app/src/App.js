@@ -1,35 +1,68 @@
 import "./App.css";
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+
 
 import axios from "axios";
 import { useQuery } from "react-query";
 
 export default function App() {
-  const { isLoading, error, data } = useQuery("posts", () =>
+  const { data } = useQuery("posts", () =>
     axios("https://628d4fd9a339dfef8798e164.mockapi.io/Hazard")
   );
   return (
-    <div className="App">
-      <form>
-  <label>
-    <input accept="image/*" id="icon-button-file" type="file" capture="environment"/>
-    <input type="text" name="name" />
-  </label>
-  <input type="submit" value="Submit" />
-</form>
+    <Container fluid className="App">
+    <form>
+      <Row>
+        <Col>
+          <label>
+            <input accept="image/*" id="icon-button-file" type="file" capture="environment"/>
+          </label>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <label>
+            <input type="text" name="name" />
+          </label>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <label>
+            <input type="submit" value="Submit" />
+          </label>
+        </Col>
+      </Row>
+    </form>
       <h1>API Posts</h1>
-      {isLoading && <div>A moment please...</div>}
-      {error && (
-        <div>{`There is a problem fetching the post data - ${error.message}`}</div>
-      )}
-      <ul>
         {data &&
-          data.data.map(({ id, title, image }) => (
-            <li key={id}>
-              <img src={image}></img>
-              <h3>{title}</h3>
-            </li>
+          data.data.map(({ id, title, description, image }) => (
+            <Row>
+              <Col>
+              <Card>
+                <Card.Img src={image} alt={title} />
+                <Card.Body>
+                  <Card.Title>{title}</Card.Title>
+                  <Card.Text>{description}</Card.Text>
+                  <Row>
+                  <Col>
+                    <Button variant="primary">Curtir</Button>
+                  </Col>
+                  <Col>
+                    <Button variant="danger">Negativar</Button>
+                  </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+                <div key={id}>
+                  <img ></img>
+                  <h3></h3>
+                </div>
+              </Col>
+            </Row>
           ))}
-      </ul>
-    </div>
+      
+    </Container>
+    
   );
 }
