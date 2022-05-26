@@ -1,3 +1,4 @@
+import "../App.css";
 
 import axios from "axios";
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
