@@ -21,12 +21,13 @@ export default function App() {
   console.log(latitude, longitude);
 
   const { data } = useQuery("posts", () =>
-    axios("https://628d4fd9a339dfef8798e164.mockapi.io/Hazard")
+    axios("http://localhost:3001/hazards")
   );
+
   return (
     <Container className="App">
         {data &&
-          data.data.map(({ id, title, description, image }) => (
+          data.data.message.map(({ id, title, description, image }) => (
             <Row key={id}>
               <Col>
               <Card >
@@ -34,14 +35,6 @@ export default function App() {
                 <Card.Body>
                   <Card.Title>{title}</Card.Title>
                   <Card.Text>{description}</Card.Text>
-                  <Row>
-                  <Col>
-                    <Button variant="primary">Curtir</Button>
-                  </Col>
-                  <Col>
-                    <Button variant="danger">Negativar</Button>
-                  </Col>
-                  </Row>
                 </Card.Body>
               </Card>
               </Col>
