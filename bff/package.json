@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server.js",
-    "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vitorfbs/yummy.git"
+    "url": "https://github.com/margaret-hamilton/tapou-app"
   },
   "keywords": [
     "API",
