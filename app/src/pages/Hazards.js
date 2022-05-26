@@ -5,8 +5,8 @@ import { Map, GoogleApiWrapper } from 'google-maps-react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useQuery } from "react-query";
 
-let latitude = 1;
-let longitude = 1;
+let latitude;
+let longitude;
 
 export default function App() {
 

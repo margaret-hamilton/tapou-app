@@ -9,8 +9,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-let latitude = 1;
-let longitude = 1;
+let latitude;
+let longitude;
 
 export default function Home() {
 

@@ -1,9 +1,11 @@
 import "../App.css";
 
+import React, { useEffect, useRef, ReactElement } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Wrapper, Map, Marker } from "@googlemaps/react-wrapper";
 import { Link } from "react-router-dom";
-let latitude = 1;
-let longitude = 1;
+let latitude;
+let longitude;
 
 export default function Home() {
   if (navigator.geolocation) {
@@ -14,6 +16,25 @@ export default function Home() {
     longitude = position.coords.longitude;
   }
 
+  function MapComponent({
+    center,
+    zoom,
+  }) {
+    const ref = useRef();
+  
+    useEffect(() => {
+      new window.google.maps.Map(ref.current, {
+        center,
+        zoom,
+      });
+    });
+  
+    return <div ref={ref} id="map" />;
+  }
+
+  const center = { lat: latitude, longitude };
+  const zoom = 4;
+
   console.log(latitude, longitude);
 
   return (
@@ -22,6 +43,9 @@ export default function Home() {
         <Col>
           <Card>
             <Card.Body>
+            <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}>
+              <MapComponent />
+            </Wrapper>
               <div className="d-grid gap-2">
                 <Button size="lg" variant="primary">
                   <Link to="/register">Registrar Conformidade</Link>

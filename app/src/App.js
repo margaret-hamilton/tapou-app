@@ -1,3 +1,4 @@
+
 import React from "react";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
@@ -11,8 +12,8 @@ import {
   Navbar,
 } from "react-bootstrap";
 
-let latitude = 1;
-let longitude = 1;
+let latitude;
+let longitude;
 
 export default function App() {
   if (navigator.geolocation) {

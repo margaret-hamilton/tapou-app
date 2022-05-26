@@ -1,7 +1,8 @@
 import "../App.css";
 
 import axios from "axios";
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import React, { useEffect, useRef, ReactElement } from "react";
+import { Wrapper, Map, Marker } from "@googlemaps/react-wrapper";
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useQuery } from "react-query";
 import {
@@ -10,8 +11,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-let latitude = 1;
-let longitude = 1;
+let latitude;
+let longitude;
 
 export default function Register() {
 
@@ -23,13 +24,33 @@ export default function Register() {
     longitude = position.coords.longitude;
   }
 
-  console.log(latitude, longitude);
+  function MapComponent({
+    center,
+    zoom,
+  }) {
+    const ref = useRef();
+  
+    useEffect(() => {
+      new window.google.maps.Map(ref.current, {
+        center,
+        zoom,
+      });
+    });
+  
+    return <div ref={ref} id="map" />;
+  }
+
+  const center = { lat: latitude, longitude };
+  const zoom = 4;
 
   const { data } = useQuery("posts", () =>
     axios("https://628d4fd9a339dfef8798e164.mockapi.io/Hazard")
   );
   return (
     <Container className="App">
+    <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}>
+      <MapComponent />
+    </Wrapper>
     <Form>
       <Form.Group className="mb-3" id="formTitle">
         <Form.Label>Título</Form.Label>
