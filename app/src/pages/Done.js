@@ -1,32 +1,9 @@
 import "../App.css";
 
-import axios from "axios";
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
-import { useQuery } from "react-query";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
-let latitude;
-let longitude;
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 export default function Home() {
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getPosition);
-  }
-  function getPosition(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-  }
-
-  console.log(latitude, longitude);
-
-  const { data } = useQuery("posts", () =>
-    axios("https://628d4fd9a339dfef8798e164.mockapi.io/Hazard")
-  );
   return (
     <Container className="App">
     <Row key={4}>

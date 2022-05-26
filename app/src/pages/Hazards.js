@@ -1,26 +1,12 @@
 import "../App.css";
 
 import axios from "axios";
-import { Map, GoogleApiWrapper } from 'google-maps-react';
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Card} from 'react-bootstrap';
 import { useQuery } from "react-query";
 
-let latitude;
-let longitude;
-
-export default function App() {
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getPosition);
-  }
-  function getPosition(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-  }
-
-  console.log(latitude, longitude);
-
-  const { data } = useQuery("posts", () =>
+export default function Hazards() {
+  
+  const { data } = useQuery("message", () =>
     axios("http://localhost:3001/hazards")
   );
 

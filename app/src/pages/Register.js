@@ -1,16 +1,10 @@
 import "../App.css";
 
-import axios from "axios";
-import React, { useEffect, useRef, ReactElement } from "react";
-import { Wrapper, Map, Marker } from "@googlemaps/react-wrapper";
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
-import { useQuery } from "react-query";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Wrapper} from "@googlemaps/react-wrapper";
+import { Container, Button, Form } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+
 let latitude;
 let longitude;
 
@@ -23,6 +17,9 @@ export default function Register() {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
   }
+
+  const center = { lat: latitude, longitude };
+  const zoom = 4;
 
   function MapComponent({
     center,
@@ -40,12 +37,6 @@ export default function Register() {
     return <div ref={ref} id="map" />;
   }
 
-  const center = { lat: latitude, longitude };
-  const zoom = 4;
-
-  const { data } = useQuery("posts", () =>
-    axios("https://628d4fd9a339dfef8798e164.mockapi.io/Hazard")
-  );
   return (
     <Container className="App">
     <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}>

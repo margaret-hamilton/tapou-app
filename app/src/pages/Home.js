@@ -4,10 +4,17 @@ import React, { useEffect, useRef, ReactElement } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Wrapper, Map, Marker } from "@googlemaps/react-wrapper";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
+import axios from "axios";
+
 let latitude;
 let longitude;
 
 export default function Home() {
+  const { data } = useQuery("posts", () =>
+  axios("https://628d4fd9a339dfef8798e164.mockapi.io/Hazard")
+);
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getPosition);
   }
