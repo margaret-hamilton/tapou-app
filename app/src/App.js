@@ -1,4 +1,3 @@
-
 import React from "react";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
@@ -6,11 +5,7 @@ import Done from "./pages/Done";
 import Hazards from "./pages/Hazards";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import {
-  Container,
-  Nav,
-  Navbar,
-} from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 let latitude;
 let longitude;
@@ -41,12 +36,12 @@ export default function App() {
       </Navbar>
 
       <Router>
-          <Routes>
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="/done" element={<Done />}></Route>
-            <Route path="/hazards" element={<Hazards />}></Route>
-            <Route path="/" element={<Home />}></Route>
-          </Routes>
+        <Routes>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/done" element={<Done />}></Route>
+          <Route path="/hazards" element={<Hazards />}></Route>
+          <Route path="/" element={<Home />}></Route>
+        </Routes>
       </Router>
     </Container>
   );

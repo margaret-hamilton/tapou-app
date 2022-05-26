@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import { StrictMode } from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import App from "./App";
@@ -15,4 +15,5 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <App />
     </QueryClientProvider>
-  </StrictMode>);
+  </StrictMode>
+);

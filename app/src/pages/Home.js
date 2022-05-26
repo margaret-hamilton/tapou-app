@@ -1,20 +1,14 @@
 import "../App.css";
 
-import React, { useEffect, useRef, ReactElement } from "react";
+import React, { useEffect, useRef } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Wrapper, Map, Marker } from "@googlemaps/react-wrapper";
+import { Wrapper} from "@googlemaps/react-wrapper";
 import { Link } from "react-router-dom";
-import { useQuery } from "react-query";
-import axios from "axios";
 
 let latitude;
 let longitude;
 
 export default function Home() {
-  const { data } = useQuery("posts", () =>
-  axios("https://628d4fd9a339dfef8798e164.mockapi.io/Hazard")
-);
-
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getPosition);
   }
@@ -23,19 +17,16 @@ export default function Home() {
     longitude = position.coords.longitude;
   }
 
-  function MapComponent({
-    center,
-    zoom,
-  }) {
+  function MapComponent({ center, zoom }) {
     const ref = useRef();
-  
+
     useEffect(() => {
       new window.google.maps.Map(ref.current, {
         center,
         zoom,
       });
     });
-  
+
     return <div ref={ref} id="map" />;
   }
 
@@ -50,9 +41,9 @@ export default function Home() {
         <Col>
           <Card>
             <Card.Body>
-            <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}>
-              <MapComponent />
-            </Wrapper>
+              <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}>
+                <MapComponent />
+              </Wrapper>
               <div className="d-grid gap-2">
                 <Button size="lg" variant="primary">
                   <Link to="/register">Registrar Conformidade</Link>
