@@ -24,7 +24,6 @@ export default function App() {
   );
   return (
     <Container className="App">
-      <h1>Conformidades</h1>
         {data &&
           data.data.map(({ id, title, description, image }) => (
             <Row key={id}>

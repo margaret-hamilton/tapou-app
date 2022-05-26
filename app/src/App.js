@@ -3,21 +3,27 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Done from "./pages/Done";
 import Hazards from "./pages/Hazards";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import {
   Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Form,
   Nav,
   Navbar,
-  NavDropdown,
 } from "react-bootstrap";
 
+let latitude = 1;
+let longitude = 1;
+
 export default function App() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getPosition);
+  }
+  function getPosition(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+  }
+
+  console.log(latitude, longitude);
   return (
     <Container>
       <Navbar bg="light" expand="lg">
@@ -34,24 +40,12 @@ export default function App() {
       </Navbar>
 
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/register">Register</Link>
-              </li>
-            </ul>
-          </nav>
-
-          {/* A <Routes> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
           <Routes>
             <Route path="/register" element={<Register />}></Route>
             <Route path="/done" element={<Done />}></Route>
             <Route path="/hazards" element={<Hazards />}></Route>
             <Route path="/" element={<Home />}></Route>
           </Routes>
-        </div>
       </Router>
     </Container>
   );

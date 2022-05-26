@@ -1,7 +1,7 @@
-import axios from "axios";
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
-import { useQuery } from "react-query";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import "../App.css";
+
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 let latitude = 1;
 let longitude = 1;
 
@@ -16,30 +16,20 @@ export default function Home() {
 
   console.log(latitude, longitude);
 
-  const { data } = useQuery("posts", () =>
-    axios("https://628d4fd9a339dfef8798e164.mockapi.io/Hazard")
-  );
   return (
     <Container className="App">
       <Row key={4}>
         <Col>
           <Card>
             <Card.Body>
-              <Card.Text>Mostre os problemas no seu caminho</Card.Text>
-              <Row>
-                <Col>
-                  <Button variant="primary">
-                    <Link to="/register">Registrar Conformidade</Link>
-                  </Button>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Button variant="primary">
-                    <Link to="/hazards">Ver Conformidades</Link>
-                  </Button>
-                </Col>
-              </Row>
+              <div className="d-grid gap-2">
+                <Button size="lg" variant="primary">
+                  <Link to="/register">Registrar Conformidade</Link>
+                </Button>
+                <Button size="lg" variant="primary">
+                  <Link to="/hazards">Ver Conformidades</Link>
+                </Button>
+              </div>
             </Card.Body>
           </Card>
         </Col>
